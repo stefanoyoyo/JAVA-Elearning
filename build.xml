@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="ProgettoLaboratorioB">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="ProgettoLaboratorioB.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="Lib/javax.mail.jar"/>
+        <pathelement location="Lib/postgresql-42.2.5.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="ProgettoLaboratorioB.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="ServerMain">
+        <java classname="Server.ServerMain" failonerror="true" fork="yes">
+            <classpath refid="ProgettoLaboratorioB.classpath"/>
+        </java>
+    </target>
+	
+	<target name="jarserver">
+	    <mkdir dir="build/jar"/>
+	    <jar destfile="build/jar/Server.jar" basedir="bin">
+	    	<zipgroupfileset dir="./Lib" includes="*.jar"/>
+	    	
+	        <manifest>
+	            <attribute name="Main-Class" value="Server.ServerMain"/>   
+	        </manifest>
+	    	
+	    </jar>
+		<echo message="server jar has been built!" />
+	</target>
+	
+	<target name="runserver">
+	    <java jar="build/jar/Server.jar" fork="true"/>
+	</target>
+ 
+	<target name="jaradmin">
+        <jar destfile="build/jar/ClientAdmin.jar" basedir="bin">
+        	<zipgroupfileset dir="./Lib" includes="*.jar"/>
+        	
+            <manifest>
+                <attribute name="Main-Class" value="Admin.GUI.Login"/>   
+            </manifest>
+        	
+        </jar>
+		<echo message="admin jar has been built!" />
+    </target>
+
+    <target name="runadmin">
+        <java jar="build/jar/ClientAdmin.jar" fork="true"/>
+    </target>
+
+	<target name="jaruser">
+        <jar destfile="build/jar/ClientUser.jar" basedir="bin">
+        	<zipgroupfileset dir="./Lib" includes="*.jar"/>
+        	
+            <manifest>
+                <attribute name="Main-Class" value="Client.GUI.LoginClient"/>   
+            </manifest>
+        	
+        </jar>
+		<echo message="user jar has been built!" />
+    </target>
+
+    <target name="runuser">
+        <java jar="build/jar/ClientUser.jar" fork="true"/>
+    </target>
+          	
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="Lib/javax.mail.jar;Lib/postgresql-42.2.5.jar" destdir="javadoc" 
+        	doctitle="Java Doc dbSeatInA" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" 
+        	packagenames="Client,Server.Database,Admin.GUI,Common.Enumerators,Common.Pacchetti,Progressi,Common.DBType,Server.Database.Utenti,Common,Server,Client.GUI,Server.Utilities,Server.Database.Corsi" 
+        	source="1.8" sourcepath="src" splitindex="true" use="true" version="true"/>
+    </target>
+
+</project>

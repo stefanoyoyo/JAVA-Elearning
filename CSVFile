@@ -1,0 +1,8 @@
+﻿Matricola,Nome,Cognome,Email,CodiceAttivazione,Password,Verificato,Corso,AnnoMat,Stato Carriera,Bloccato,TentativiLogin,TipoUtente
+62,Luigi,Quarto,Luigi.Quarto@outlook.it,123468,password12,true,1000,2010,fuori corso,false,2,Studente
+63,Davide,Quinto,Davide.Quinto@outlook.it,123469,password13,false,1001,2011,fuori corso,false,2,Studente
+64,Alessandro,Quinti,Alessandro.Quinti@outlook.it,123470,password14,true,1002,2017,fuori corso,false,2,Studente
+65,Paride,Sesto,Paride.Sesto@outlook.it,123471,password15,false,1000,2017,III,false,2,Studente
+66,Paolo,Sesti,Paolo.Sesti@outlook.it,123472,password16,true,1002,2019,I,false,2,Studente
+67,Crocifisso,Moneta,Crocifisso.Moneta@outlook.it,123473,password17,false,1000,2017,I,false,2,Studente
+68,Melchiorre,Fragola,Melchiorre.Fragola@outlook.it,123474,password18,true,1000,2017,II,false,2,Studente

@@ -1,0 +1,1 @@
+Per fare il backup del db su postgres creare un nuovo db ( nell'ultima versione di pgadmin) chiamato dbSeatIn, dopodiché tasto destro -> restore e selezionate BACKUP
